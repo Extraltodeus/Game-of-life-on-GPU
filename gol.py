@@ -61,7 +61,8 @@ runner = 0
 running = True
 paused  = False
 edit    = False
-
+hide    = False
+AUTO_RESTART = False
 while running:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
@@ -127,7 +128,10 @@ while running:
                 m = new_m(CHANCES)
             if event.key == pygame.K_SPACE:
                 paused = not paused
-
+            if event.key == pygame.K_h:
+                hide = not hide
+            if event.key == pygame.K_a:
+                AUTO_RESTART = not AUTO_RESTART
     if edit:
         pos = pygame.mouse.get_pos()
         c = mc[0][0][floor(pos[1]/VISIBLE_CELL_SIZE)][floor(pos[0]/VISIBLE_CELL_SIZE)]
@@ -147,6 +151,9 @@ while running:
     arr = (arr.squeeze().detach().cpu().numpy()).astype(np.uint8)
 
     if runner == 0 and not paused:
+        if AUTO_RESTART:
+            if m.sum() == 0:
+                m = new_m(CHANCES)
         if LIFE_CYCLE:
             m[d > FPS * LIFE_CYCLE_DURATION] = 0
         if ZOMBIE:
@@ -154,16 +161,19 @@ while running:
 
     surface = pygame.surfarray.make_surface(np.stack([arr]*3, axis=-1).swapaxes(0, 1))
     surface = pygame.transform.scale(surface, (x * VISIBLE_CELL_SIZE, y * VISIBLE_CELL_SIZE))
-    text_to_screen(surface, f"Will live (alpha):")
-    text_to_screen(surface, f"{' '.join([str(l) for l in lives])}")
-    text_to_screen(surface, f"Will stay (numpad):")
-    text_to_screen(surface, f"{' '.join([str(s) for s in stays])}")
-    text_to_screen(surface, f"Life Cycle death (F): {'ON' if LIFE_CYCLE else 'OFF'}")
-    text_to_screen(surface, f"Life Cycle resurrection (Z): {'ON' if ZOMBIE else 'OFF'}")
-    text_to_screen(surface, f"Pause (Space): {'ON' if paused else 'OFF'}")
-    text_to_screen(surface, "Random (R)")
-    text_to_screen(surface, "Empty (E)")
-    text_indent = 10
+    if not hide:
+        text_to_screen(surface, f"Will live (alpha):")
+        text_to_screen(surface, f"{' '.join([str(l) for l in lives])}")
+        text_to_screen(surface, f"Will stay (numpad):")
+        text_to_screen(surface, f"{' '.join([str(s) for s in stays])}")
+        text_to_screen(surface, f"Life Cycle death (F): {'ON' if LIFE_CYCLE else 'OFF'}")
+        text_to_screen(surface, f"Life Cycle resurrection (Z): {'ON' if ZOMBIE else 'OFF'}")
+        text_to_screen(surface, f"Auto-restart on empty (A): {'ON' if AUTO_RESTART else 'OFF'}")
+        text_to_screen(surface, f"Pause (Space): {'ON' if paused else 'OFF'}")
+        text_to_screen(surface, "Random (R)")
+        text_to_screen(surface, "Empty (E)")
+        text_to_screen(surface, "Hide UI (H)")
+        text_indent = 10
     screen.blit(surface, (0, 0))
     pygame.display.flip()
     runner = (runner + 1)%floor(FPS / CHECK_WS)
