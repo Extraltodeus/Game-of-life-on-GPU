@@ -13,6 +13,8 @@ Control:
 - R: Random board
 - Space: pause / unpause
 
+You can edit the screen resolution within the file, respectively x and y.
+
 ![image](https://github.com/user-attachments/assets/bfd8b2d8-9ffc-4b6e-aa1d-f8bd559c2a63)
 
 Wonderful isn't it!
