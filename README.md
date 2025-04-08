@@ -5,12 +5,13 @@ It occured to me that a simple kernel would easily allow to compute the game of 
 
 Control:
 
-0-8 aplhanum: Cell count needed to light one up (default 3).
-0-8 Numpad: Cell count which will no die on next turn (default 2)
-F: Added an extra feat of a maximum life duration for each cell. Natural selection will show up.
-Z: Adds a chance of resurrection.
-E: Empty board
-R: Random board
+- 0-8 aplhanum: Cell count needed to light one up (default 3).
+- 0-8 Numpad: Cell count which will no die on next turn (default 2)
+- F: Added an extra feat of a maximum life duration for each cell. Natural selection will show up.
+- Z: Adds a chance of resurrection.
+- E: Empty board
+- R: Random board
+- Space: pause / unpause
 
 ![image](https://github.com/user-attachments/assets/bfd8b2d8-9ffc-4b6e-aa1d-f8bd559c2a63)
 
