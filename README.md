@@ -15,6 +15,8 @@ Control:
 
 You can edit the screen resolution within the file, respectively x and y.
 
+Left mouse click can turn on or off cells.
+
 ![image](https://github.com/user-attachments/assets/bfd8b2d8-9ffc-4b6e-aa1d-f8bd559c2a63)
 
 Wonderful isn't it!
