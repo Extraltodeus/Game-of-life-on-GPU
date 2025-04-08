@@ -11,6 +11,8 @@ Control:
 - Z: Adds a chance of resurrection.
 - E: Empty board
 - R: Random board
+- A: auto-restart if no cell remains. Like if you want to let the game run with the max life duration and expect some pattern to emerge.
+- H: hide/show commands
 - Space: pause / unpause
 
 You can edit the screen resolution within the file, respectively x and y.
