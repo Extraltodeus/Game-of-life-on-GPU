@@ -1,5 +1,5 @@
 # Game-of-life-on-GPU
-pytorch implementation of the game of life imagined by John Horton Conway (1937–2020) using a convolution kernel
+pytorch implementation of the game of life imagined by John Horton Conway (1937–2020) using a convolution kernel.
 
 It occured to me that a simple kernel would easily allow to compute the game of life using a GPU so here it is.
 
